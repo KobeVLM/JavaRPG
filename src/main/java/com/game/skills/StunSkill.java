@@ -1,6 +1,7 @@
 package com.game.skills;
 
 import com.game.characters.Player;
+import com.game.utils.Utility;
 import com.game.characters.Enemy;
 
 public class StunSkill extends Skill {
@@ -17,7 +18,7 @@ public class StunSkill extends Skill {
         if (player.getMana() >= getManaCost()) {
             player.useMana(getManaCost());
             enemy.applyStun(1); // Stun the enemy for 1 turn
-            System.out.println("The enemy is stunned and cannot move!");
+            Utility.printWithDelay("The enemy is stunned and cannot move!");
         } else {
             System.out.println("Not enough mana to use this skill.");
         }
@@ -25,8 +26,12 @@ public class StunSkill extends Skill {
 
     @Override
     public void enhanceSkill(int level) {
-        // Enhance the skill based on the level
         setManaCost(getManaCost() - level); // Example enhancement logic
         setDescription(getDescription() + " (Enhanced)");
+    }
+
+    @Override
+    public String getStats() {
+        return "Stuns the enemy for 1 turn";
     }
 }

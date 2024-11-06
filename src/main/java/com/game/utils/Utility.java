@@ -140,4 +140,14 @@ public class Utility {
             clip.stop();
         }
     }
+
+    public static void printSpace(int count){
+        for (int i = 0; i < count; i++) {
+            System.out.println();
+        }
+    }
+
+    public static void barrier(){
+        System.out.println("===============================================================================================================");
+    }
 }

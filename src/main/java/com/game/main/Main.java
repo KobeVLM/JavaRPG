@@ -15,33 +15,56 @@ public class Main {
 
         while (true) {
             Utility.clearScreen();
-            DialogueScene.displayTitle();
+            Utility.displayAsciiArt("Main Menu");
+            System.out.println("[1] Start Game");
+            System.out.println("[2] Exit");
+            System.out.print("\nEnter choice: ");
             try {
-                Thread.sleep(2000); // 2 seconds delay
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            Utility.clearScreen();
+                int mainChoice = scan.nextInt();
+                scan.nextLine(); // Consume newline
 
-            // Display Character Information
-            displayCharacterInformation(scan);
-            
-            // Character Selection
-            Player player = chooseCharacter(scan);
-            Utility.clearScreen();
-            Utility.displayBoxedMessage("You've chosen the hero, " + player.getName() + "!");
-            Utility.displayAsciiArt(player.getName());
-            Utility.displayClearDelay();
-            player.displayCharacterInfo();
+                if (mainChoice == 1) {
+                    Utility.clearScreen();
+                    DialogueScene.displayTitle();
+                    try {
+                        Thread.sleep(2000); // 2 seconds delay
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Utility.clearScreen();
 
-            // Start the game
-            boolean gameWon = Game.startActOne(player, scan);
+                    // Display Character Information
+                    displayCharacterInformation(scan);
 
-            if (gameWon) {
-                System.out.println("Congratulations! You have completed the game.");
-                break;
-            } else {
-                System.out.println("You were defeated. Starting over...");
+                    // Character Selection
+                    Player player = chooseCharacter(scan);
+                    Utility.clearScreen();
+                    Utility.displayBoxedMessage("You've chosen the hero, " + player.getName() + "!");
+                    Utility.displayAsciiArt(player.getName());
+                    Utility.displayClearDelay();
+                    player.displayCharacterInfo();
+
+                    // Start the game
+                    boolean gameWon = Game.prologue(player, scan);
+
+                    if (gameWon) {
+                        System.out.println("Congratulations! You have completed the game.");
+                        break;
+                    } else {
+                        System.out.println("You were defeated. Starting over...");
+                    }
+                } else if (mainChoice == 2) {
+                    Utility.clearScreen();
+                    Utility.displayAsciiArt("( -_- ) Goodbye!");
+                    Utility.printWithDelay("Exiting the game. Goodbye!");
+                    Utility.displayDelay(3);
+                    break;
+                } else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scan.nextLine(); // Clear the invalid input
             }
         }
 
@@ -50,19 +73,25 @@ public class Main {
 
     public static Player chooseCharacter(Scanner scan) {
 
-        // Define skills
-        Skill fireball = new AttackPowerSkill("Fireball", "A powerful fire attack.", 15, 10);
+        // Define skills for Benimaru, Zephy, and Draven
+        Skill enhance = new AttackPowerSkill("Fireball", "A powerful fire attack.", 15, 10);
         Skill heal = new HealSkill("Heal", "Restores a large amount of health.", 20, 30);
         Skill shield = new BuffSkill("Shield", "Greatly increases defense.", 12, 15);
+
+        // Define skills for Saitama
+        Skill punch = new AttackPowerSkill("Punch", "A powerful punch attack.", 10, 10);
+        Skill seriousPunch = new AttackPowerSkill("Serious Punch", "A devastating punch attack.", 0, 10);
+        Skill seriousSeries = new AttackPowerSkill("Serious Series", "A series of powerful attacks.", 0, 20);
+
 
         // Define characters
         Player warrior = new Player(
             "Benimaru", 
-            900, 
-            200, 
-            600, 
-            600, 
-            Arrays.asList(shield, heal, fireball), 
+            100, 
+            20, 
+            100, 
+            100, 
+            Arrays.asList(shield, heal, enhance), 
             "A strong and brave warrior with high defense and healing abilities."
         );
         Player mage = new Player(
@@ -71,7 +100,7 @@ public class Main {
             25, 
             60, 
             60, 
-            Arrays.asList(fireball, heal), 
+            Arrays.asList(enhance, heal), 
             "A wise and powerful mage with high attack power and healing abilities."
         );
         Player rogue = new Player(
@@ -80,8 +109,18 @@ public class Main {
             20, 
             40, 
             40, 
-            Arrays.asList(fireball, shield), 
+            Arrays.asList(enhance, shield), 
             "A stealthy and cunning rogue with balanced attack and defense abilities."
+        );
+
+        Player OP = new Player(
+            "Saitama",
+            100000,
+            10,
+            9999999,
+            99999999,
+            Arrays.asList(punch, seriousPunch, seriousSeries),
+            "A hero for fun"
         );
 
         // Character selection
@@ -90,8 +129,8 @@ public class Main {
             System.out.println("1. Benimaru");
             System.out.println("2. Zephy");
             System.out.println("3. Draven");
-            System.out.println("4. Akagi");
-            System.out.print("Enter the number of your choice: ");
+            System.out.println("4. Saitama");
+            System.out.print("\nEnter the number of your choice: ");
             try {
                 int choice = scan.nextInt();
                 scan.nextLine(); // Consume newline
@@ -103,6 +142,8 @@ public class Main {
                         return mage;
                     case 3:
                         return rogue;
+                    case 4:
+                        return OP;
                     default:
                         System.out.println("Invalid choice. Please enter a number between 1 and 4.");
                 }
@@ -115,27 +156,50 @@ public class Main {
 
     public static void displayCharacterInformation(Scanner scan){
         while (true) {
-            System.out.println("Enter the number of the character to view more information:");
+            System.out.println("Enter the number of the character to view more information:\n");
             System.out.println("[1] Benimaru");
             System.out.println("[2] Zephy");
             System.out.println("[3] Draven");
-            System.out.print("Enter the number of your choice: ");
+            System.out.println("[4] Saitama");
+            System.out.print("\nEnter the number of your choice: ");
             String input = scan.nextLine();
             Utility.clearScreen();
             switch (input) {
             case "1":
                 Utility.displayBoxedMessage("Benimaru");
-                System.out.println(
-                    "A strong and brave warrior with high defense and healing abilities."
-                    );
+                System.out.println("Hero Name: " + "Benimaru");
+                System.out.println("Health: " + "100");
+                System.out.println("Attack Power: " + "20");
+                System.out.println("Mana: " + "100/100");
+                System.out.println("Backstory: " + "A strong and brave warrior with high defense and healing abilities.");
+                System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health." + "\n - Shield: Greatly increases defense.");
                 break;
             case "2":
                 Utility.displayBoxedMessage("Zephy");
-                System.out.println("A wise and powerful mage with high attack power and healing abilities.");
+                System.out.println("Hero Name: " + "Zephy");
+                System.out.println("Health: " + "80");
+                System.out.println("Attack Power: " + "25");
+                System.out.println("Mana: " + "60/60");
+                System.out.println("Backstory: " + "A wise and powerful mage with high attack power and healing abilities.");
+                System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health.");
                 break;
             case "3":
                 Utility.displayBoxedMessage("Draven");
-                System.out.println("A stealthy and cunning rogue with balanced attack and defense abilities.");
+                System.out.println("Hero Name: " + "Draven");
+                System.out.println("Health: " + "100");
+                System.out.println("Attack Power: " + "20");
+                System.out.println("Mana: " + "40/40");
+                System.out.println("Backstory: " + "A stealthy and cunning rogue with balanced attack and defense abilities.");
+                System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Shield: Greatly increases defense.");
+                break;
+            case "4":
+                Utility.displayBoxedMessage("Saitama");
+                System.out.println("Hero Name: " + "Saitama");
+                System.out.println("Health: " + "100000");
+                System.out.println("Attack Power: " + "10");
+                System.out.println("Mana: " + "9999999/99999999");
+                System.out.println("Backstory: " + "A hero for fun");
+                System.out.println("Skills:" + "\n - Punch: A powerful punch attack." + "\n - Serious Punch: A devastating punch attack." + "\n - Serious Series: A series of powerful attacks.");
                 break;
             default:
                 System.out.println("Invalid choice. Please try again.");

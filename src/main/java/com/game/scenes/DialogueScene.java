@@ -2,9 +2,6 @@ package com.game.scenes;
 
 public class DialogueScene {
 
-
-
-
     
     public static void displayTitle() {
         // Color codes

@@ -1,6 +1,7 @@
 package com.game.skills;
 
 import com.game.characters.Player;
+import com.game.utils.Utility;
 import com.game.characters.Enemy;
 
 public class BuffSkill extends Skill {
@@ -29,7 +30,7 @@ public class BuffSkill extends Skill {
         if (player.getMana() >= getManaCost()) {
             player.useMana(getManaCost());
             player.increaseDefense(buffAmount);
-            System.out.println("Your defense increased by " + buffAmount + ".");
+            Utility.printWithDelay("Your defense increased by " + buffAmount + ".\n");
         } else {
             System.out.println("Not enough mana to use this skill.");
         }
@@ -41,5 +42,10 @@ public class BuffSkill extends Skill {
         setBuffAmount(getBuffAmount() + level * 3); // Example enhancement logic
         setManaCost(getManaCost() + level); // Example enhancement logic
         setDescription(getDescription() + " (Enhanced)");
+    }
+
+    @Override
+    public String getStats() {
+        return "Increases defense by " + buffAmount;
     }
 }

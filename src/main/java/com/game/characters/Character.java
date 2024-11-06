@@ -2,16 +2,18 @@ package com.game.characters;
 
 import com.game.skills.Skill;
 import java.util.List;
+import java.util.Random;
 
 public abstract class Character {
     protected String name;
     protected int health;
-    protected int maxHealth; // Add maxHealth field
+    protected int maxHealth;
     protected int attackPower;
     protected int mana;
     protected int maxMana;
     protected List<Skill> skills;
     protected String backstory;
+    protected Random random; // Add a Random object
 
     public Character(String name, int health, int attackPower, int mana, int maxMana, List<Skill> skills, String backstory) {
         this.name = name;
@@ -22,6 +24,7 @@ public abstract class Character {
         this.maxMana = maxMana;
         this.skills = skills;
         this.backstory = backstory;
+        this.random = new Random(); // Initialize the Random object
     }
 
     public String getName() {
@@ -71,7 +74,11 @@ public abstract class Character {
     }
 
     public void attack(Character target) {
-        target.takeDamage(this.attackPower);
+        int minAttackPower = (int) (this.attackPower * 0.8); // Minimum attack power (80% of base attack power)
+        int maxAttackPower = (int) (this.attackPower * 1.2); // Maximum attack power (120% of base attack power)
+        int randomAttackPower = random.nextInt(maxAttackPower - minAttackPower + 1) + minAttackPower;
+        target.takeDamage(randomAttackPower);
+        System.out.println(this.name + " attacks " + target.getName() + " for " + randomAttackPower + " damage.");
     }
 
     public void addSkill(Skill newSkill) {

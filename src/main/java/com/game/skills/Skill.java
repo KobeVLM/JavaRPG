@@ -2,7 +2,10 @@ package com.game.skills;
 
 import com.game.characters.Player;
 import com.game.characters.Enemy;
+import com.game.utils.*;
 
+
+@SuppressWarnings("unused")
 public abstract class Skill {
     private String name;
     private String description;
@@ -45,4 +48,6 @@ public abstract class Skill {
     public abstract void applyEffect(Player player, Enemy enemy);
 
     public abstract void enhanceSkill(int level);
+
+    public abstract String getStats();
 }
