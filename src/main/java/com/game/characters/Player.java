@@ -19,6 +19,7 @@ public class Player extends Character {
         for (Skill skill : skills) {
             System.out.println(" - " + skill.getName() + ": " + skill.getDescription() + " (Mana Cost: " + skill.getManaCost() + ")");
         }
+        inventory.displayInventory(); // Display inventory
     }
 
     public void increaseAttackPower(int amount) {

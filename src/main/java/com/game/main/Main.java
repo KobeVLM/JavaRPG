@@ -1,6 +1,9 @@
 package com.game.main;
 
 import com.game.characters.*;
+import com.game.items.Armor;
+import com.game.items.Potion;
+import com.game.items.Weapon;
 import com.game.utils.Utility;
 import com.game.scenes.*;
 import com.game.skills.*;
@@ -44,6 +47,11 @@ public class Main {
                     Utility.displayClearDelay();
                     player.displayCharacterInfo();
 
+                    // Add items to player inventory
+                    player.getInventory().addItem(new Armor("Steel Armor", "Provides excellent protection.", 10));
+                    player.getInventory().addItem(new Weapon("Sword", "A sharp blade.", 15));
+                    player.getInventory().addItem(new Potion("Health Potion", "Restores 20 health.", 20, 3));
+
                     // Start the game
                     boolean gameWon = Game.prologue(player, scan);
 
@@ -72,6 +80,7 @@ public class Main {
     }
 
     public static Player chooseCharacter(Scanner scan) {
+
 
         // Define skills for Benimaru, Zephy, and Draven
         Skill enhance = new AttackPowerSkill("Fireball", "A powerful fire attack.", 15, 10);
