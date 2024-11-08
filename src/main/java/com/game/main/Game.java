@@ -107,7 +107,7 @@ public class Game {
 
         Utility.displayDelay(2);
 
-        Utility.printWithDelay("As Benimaru approaches, Zephy turns to face him, her eyes sharp but weary. She stands poised, ready for anything.");
+        Utility.printWithDelay("\nAs Benimaru approaches, Zephy turns to face him, her eyes sharp but weary. She stands poised, ready for anything.");
 
         Utility.displayClearDelay();
 

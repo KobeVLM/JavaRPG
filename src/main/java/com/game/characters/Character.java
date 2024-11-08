@@ -77,12 +77,13 @@ public abstract class Character {
         }
     }
 
-    public void attack(Character target) {
+    public int attack(Character target) {
         int minAttackPower = (int) (this.attackPower * 0.8); // Minimum attack power (80% of base attack power)
         int maxAttackPower = (int) (this.attackPower * 1.2); // Maximum attack power (120% of base attack power)
         int randomAttackPower = random.nextInt(maxAttackPower - minAttackPower + 1) + minAttackPower;
         target.takeDamage(randomAttackPower);
         System.out.println(this.name + " attacks " + target.getName() + " for " + randomAttackPower + " damage.");
+        return randomAttackPower;
     }
 
     public void addSkill(Skill newSkill) {
