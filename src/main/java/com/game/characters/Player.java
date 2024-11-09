@@ -34,7 +34,12 @@ public class Player extends Character {
         // Implement defense logic
     }
 
+    public int setMaxHealth(int maxHealth) {
+        return maxHealth; // Example max health
+    }
+
     public int getMaxHealth() {
         return 100; // Example max health
     }
+
 }

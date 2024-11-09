@@ -47,10 +47,10 @@ public class Main {
                     Utility.displayClearDelay();
                     player.displayCharacterInfo();
 
-                    // Add items to player inventory
+                    // Add Starting items to player inventory
                     player.getInventory().addItem(new Armor("Steel Armor", "Provides excellent protection.", 10));
                     player.getInventory().addItem(new Weapon("Sword", "A sharp blade.", 15));
-                    player.getInventory().addItem(new Potion("Health Potion", "Restores 20 health.", 20, 3));
+                    player.getInventory().addItem(new Potion("Health Potion", "Restores 20 health.", 40, 99));
 
                     // Start the game
                     boolean gameWon = Game.prologue(player, scan);

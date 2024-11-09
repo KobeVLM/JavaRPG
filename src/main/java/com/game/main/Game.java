@@ -89,7 +89,6 @@ public class Game {
         Utility.displayAsciiArt("ACT Prologue - Completed");
         Utility.displayDelay(2);
 
-
         // Proceed to Act I
         return startActOne(player, scan);
     }
@@ -231,6 +230,7 @@ public class Game {
     public static boolean startActThree(Player player, Scanner scan) {
         //Heal player after the battle
         player.heal(1000);
+        player.setMaxHealth(player.getHealth());
 
 
         // Clear screen and display the opening for Act III
