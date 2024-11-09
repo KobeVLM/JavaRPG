@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class Game {
     public static boolean prologue(Player player, Scanner scan) {
         player.heal(100); // Example of healing the player after a battle
+        player.setMaxHealth(player.getHealth() + 100); // Example of increasing the player's max health
 
         Utility.displayClearDelay();
         Utility.displayAsciiArt(player.getName() +" Journey Begins ");
