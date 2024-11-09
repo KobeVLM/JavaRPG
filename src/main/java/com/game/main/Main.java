@@ -131,8 +131,8 @@ public class Main {
             "Saitama",
             100000,
             1000,
-            9999999,
-            99999999,
+            9999,
+            9999,
             Arrays.asList(punch, seriousPunch, seriousSeries),
             "A hero for fun"
         );
@@ -211,7 +211,7 @@ public class Main {
                 System.out.println("Hero Name: " + "Saitama");
                 System.out.println("Health: " + "100000");
                 System.out.println("Attack Power: " + "10");
-                System.out.println("Mana: " + "9999999/99999999");
+                System.out.println("Mana: " + "9999/9999");
                 System.out.println("Backstory: " + "A hero for fun");
                 System.out.println("Skills:" + "\n - Punch: A powerful punch attack." + "\n - Serious Punch: A devastating punch attack." + "\n - Serious Series: A series of powerful attacks.");
                 break;
