@@ -116,7 +116,7 @@ public class Game {
 
         Utility.displayDelay(2);
 
-        Utility.printWithDelay("\nAs Benimaru approaches, Zephy turns to face him, her eyes sharp but weary. She stands poised, ready for anything.");
+        Utility.printWithDelay("\nAs " + player.getName() + " approaches, Zephy turns to face him, her eyes sharp but weary. She stands poised, ready for anything.");
 
         Utility.displayClearDelay();
 
@@ -149,7 +149,7 @@ public class Game {
         Utility.printWithDelay("The two form an uneasy alliance, and as they venture deeper into the Frosted Peaks, they come face-to-face with Thalios the Frost Giant.");
         Utility.printSpace(3);
         Utility.displayDelay(2);
-        Enemy general1 = new Enemy("Thalios", 400, 70, 100, 100, Arrays.asList(), 
+        Enemy general1 = new Enemy("Thalios", 400, 40, 100, 100, Arrays.asList(), 
         "Thalios, a once-noble frost giant, was frozen for centuries until the Abyssal Lord revived him. Now, he wields the icy magic of the Frosted Peaks to destroy those who dare defy his master."
         );
         Utility.printWithDelay(general1.getName() + "\n\"Mortals. You seek to defy the Abyssal Lord? Foolish. The cold will claim you long before you reach him!\"");
