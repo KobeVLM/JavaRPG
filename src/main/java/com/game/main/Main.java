@@ -51,6 +51,7 @@ public class Main {
                     player.getInventory().addItem(new Armor("Steel Armor", "Provides excellent protection.", 10));
                     player.getInventory().addItem(new Weapon("Sword", "A sharp blade.", 15));
                     player.getInventory().addItem(new Potion("Health Potion", "Restores 20 health.", 40, 99));
+                    player.getInventory().addItem(new Potion("Mana Potion", "Restores 20 mana.", 40, 99));
 
                     // Start the game
                     boolean gameWon = Game.prologue(player, scan);
@@ -129,7 +130,7 @@ public class Main {
         Player OP = new Player(
             "Saitama",
             100000,
-            10,
+            1000,
             9999999,
             99999999,
             Arrays.asList(punch, seriousPunch, seriousSeries),
