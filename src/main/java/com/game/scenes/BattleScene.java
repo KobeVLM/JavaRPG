@@ -94,7 +94,7 @@ public class BattleScene {
             Utility.displayDelay(2);
             return true;
         } else {
-            System.out.println("\u001B[91m\n\nYou were defeated by the " + enemy.getName() + "...\u001B[0m");
+            Utility.printWithDelay("\u001B[91m\n\nYou were defeated by the " + enemy.getName() + "...\u001B[0m");
             Utility.displayDelay(2);
             return false;
         }
@@ -142,7 +142,7 @@ public class BattleScene {
         System.out.println("Choose a skill:\n");
         for (int i = 0; i < player.getSkills().size(); i++) {
             Skill skill = player.getSkills().get(i);
-            System.out.println("[" + (i + 1) + "] " + skill.getName() + " - " + skill.getDescription() + " (Mana Cost: " + skill.getManaCost() + ")");
+            System.out.println("[" + (i + 1) + "] " + skill.getName() + " - " + "(" + skill.getStats() + ")" + " (Mana Cost: " + skill.getManaCost() + ")");
         }
 
         try {

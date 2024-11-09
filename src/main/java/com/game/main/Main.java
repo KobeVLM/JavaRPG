@@ -56,10 +56,14 @@ public class Main {
                     boolean gameWon = Game.prologue(player, scan);
 
                     if (gameWon) {
-                        System.out.println("Congratulations! You have completed the game.");
+                        Utility.displayAsciiArt("VICTORY! (^_^)");
+                        Utility.printWithDelay("Congratulations! You have completed the game.");
+                        Utility.displayDelay(3);
                         break;
                     } else {
-                        System.out.println("You were defeated. Starting over...");
+                        Utility.displayAsciiArt("DEFEAT (x_x)");
+                        Utility.printWithDelay("You were defeated. Starting over...");
+                        Utility.displayDelay(2);
                     }
                 } else if (mainChoice == 2) {
                     Utility.clearScreen();
@@ -97,7 +101,7 @@ public class Main {
         Player warrior = new Player(
             "Benimaru", 
             100, 
-            20, 
+            300, 
             100, 
             100, 
             Arrays.asList(shield, heal, enhance), 

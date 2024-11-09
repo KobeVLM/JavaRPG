@@ -3,7 +3,9 @@ C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\items\Po
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\skills\AttackPowerSkill.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\characters\General.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\skills\Skill.java
+C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\items\Item.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\characters\Player.java
+C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\inventory\PlayerInventory.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\worlds\FrostedPeaks.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\items\Armor.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\characters\Character.java
@@ -15,6 +17,7 @@ C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\skills\B
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\scenes\ExplorationScene.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\characters\NPC.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\characters\Boss.java
+C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\inventory\Inventory.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\items\Weapon.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\worlds\AbyssalDepths.java
 C:\Users\Kobe\Desktop\FinalProject\heroes_ascent\src\main\java\com\game\worlds\World.java

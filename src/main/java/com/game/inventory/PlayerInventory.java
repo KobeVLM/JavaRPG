@@ -21,7 +21,7 @@ public class PlayerInventory implements Inventory {
             }
         }
         items.add(item);
-        System.out.println(item.getName() + " added to inventory.");
+        System.out.println(item.getName() + "[x" + item.getQuantity() + "]" + " added to inventory.");
     }
 
     @Override

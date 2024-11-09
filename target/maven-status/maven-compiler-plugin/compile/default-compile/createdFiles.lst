@@ -1,11 +1,13 @@
 com\game\characters\NPC.class
 com\game\worlds\FrostedPeaks.class
 com\game\characters\Boss.class
+com\game\inventory\Inventory.class
 com\game\worlds\EmberIsles.class
 com\game\skills\StunSkill.class
 com\game\skills\Skill.class
 com\game\main\Main.class
 com\game\characters\General.class
+com\game\items\Item.class
 com\game\scenes\DialogueScene.class
 com\game\characters\Enemy.class
 com\game\characters\Player.class
@@ -22,4 +24,5 @@ com\game\characters\Character.class
 com\game\scenes\BattleScene.class
 com\game\utils\Utility.class
 com\game\skills\AttackPowerSkill.class
+com\game\inventory\PlayerInventory.class
 com\game\skills\BuffSkill.class
