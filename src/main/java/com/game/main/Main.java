@@ -17,6 +17,16 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         while (true) {
+
+            Utility.displayDelay(7);
+            Utility.clearScreen();
+            DialogueScene.displayTitle();
+            try {
+                Thread.sleep(2000); // 2 seconds delay
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             Utility.clearScreen();
             Utility.displayAsciiArt("Main Menu");
             System.out.println("[1] Start Game");
@@ -27,13 +37,6 @@ public class Main {
                 scan.nextLine(); // Consume newline
 
                 if (mainChoice == 1) {
-                    Utility.clearScreen();
-                    DialogueScene.displayTitle();
-                    try {
-                        Thread.sleep(2000); // 2 seconds delay
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
                     Utility.clearScreen();
 
                     // Display Character Information
@@ -179,7 +182,6 @@ public class Main {
             Utility.clearScreen();
             switch (input) {
             case "1":
-                Utility.displayBoxedMessage("Benimaru");
                 System.out.println("Hero Name: " + "Benimaru");
                 System.out.println("Health: " + "100");
                 System.out.println("Attack Power: " + "20");
@@ -188,7 +190,6 @@ public class Main {
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health." + "\n - Shield: Greatly increases defense.");
                 break;
             case "2":
-                Utility.displayBoxedMessage("Zephy");
                 System.out.println("Hero Name: " + "Zephy");
                 System.out.println("Health: " + "80");
                 System.out.println("Attack Power: " + "25");
@@ -197,7 +198,6 @@ public class Main {
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health.");
                 break;
             case "3":
-                Utility.displayBoxedMessage("Draven");
                 System.out.println("Hero Name: " + "Draven");
                 System.out.println("Health: " + "100");
                 System.out.println("Attack Power: " + "20");
@@ -206,7 +206,6 @@ public class Main {
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Shield: Greatly increases defense.");
                 break;
             case "4":
-                Utility.displayBoxedMessage("Saitama");
                 System.out.println("Hero Name: " + "Saitama");
                 System.out.println("Health: " + "100000");
                 System.out.println("Attack Power: " + "10");

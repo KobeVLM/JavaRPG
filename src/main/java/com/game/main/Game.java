@@ -15,6 +15,10 @@ public class Game {
     public static boolean prologue(Player player, Scanner scan) {
         player.heal(100); // Example of healing the player after a battle
 
+        // (https://www.texttovoice.online/) Voices for:
+        // Scene - Salli, Female
+
+
         Utility.displayClearDelay();
         Utility.displayAsciiArt(player.getName() +" Journey Begins ");
         Utility.displayDelay(2);
