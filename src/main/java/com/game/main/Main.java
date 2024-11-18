@@ -16,9 +16,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         
+        
         while (true) {
 
-            Utility.displayDelay(7);
+            Utility.displayDelay(3);
             Utility.clearScreen();
             DialogueScene.displayTitle();
             try {
@@ -104,7 +105,7 @@ public class Main {
         // Define characters
         Player warrior = new Player(
             "Benimaru", 
-            100, 
+            200, 
             300, 
             100, 
             100, 
@@ -113,30 +114,26 @@ public class Main {
         );
         Player mage = new Player(
             "Zephy", 
-            80, 
+            200, 
             25, 
-            60, 
-            60, 
+            100, 
+            100, 
             Arrays.asList(enhance, heal), 
             "A wise and powerful mage with high attack power and healing abilities."
         );
         Player rogue = new Player(
             "Draven", 
-            100, 
+            200, 
             20, 
-            40, 
-            40, 
+            100, 
+            100, 
             Arrays.asList(enhance, shield), 
             "A stealthy and cunning rogue with balanced attack and defense abilities."
         );
 
         Player OP = new Player(
             "Saitama",
-<<<<<<< HEAD
-            10000,
-=======
             100000,
->>>>>>> 284ca352bcbfc9e2902d921cd9105e32efa19a36
             1000,
             9999,
             9999,
@@ -188,7 +185,7 @@ public class Main {
             switch (input) {
             case "1":
                 System.out.println("Hero Name: " + "Benimaru");
-                System.out.println("Health: " + "100");
+                System.out.println("Health: " + "200");
                 System.out.println("Attack Power: " + "20");
                 System.out.println("Mana: " + "100/100");
                 System.out.println("Backstory: " + "A strong and brave warrior with high defense and healing abilities.");
@@ -196,29 +193,24 @@ public class Main {
                 break;
             case "2":
                 System.out.println("Hero Name: " + "Zephy");
-                System.out.println("Health: " + "80");
+                System.out.println("Health: " + "200");
                 System.out.println("Attack Power: " + "25");
-                System.out.println("Mana: " + "60/60");
+                System.out.println("Mana: " + "100/100");
                 System.out.println("Backstory: " + "A wise and powerful mage with high attack power and healing abilities.");
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health.");
                 break;
             case "3":
                 System.out.println("Hero Name: " + "Draven");
-                System.out.println("Health: " + "100");
+                System.out.println("Health: " + "200");
                 System.out.println("Attack Power: " + "20");
-                System.out.println("Mana: " + "40/40");
+                System.out.println("Mana: " + "100/100");
                 System.out.println("Backstory: " + "A stealthy and cunning rogue with balanced attack and defense abilities.");
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Shield: Greatly increases defense.");
                 break;
             case "4":
                 System.out.println("Hero Name: " + "Saitama");
-<<<<<<< HEAD
-                System.out.println("Health: " + "10000");
-                System.out.println("Attack Power: " + "1000");
-=======
                 System.out.println("Health: " + "100000");
                 System.out.println("Attack Power: " + "10");
->>>>>>> 284ca352bcbfc9e2902d921cd9105e32efa19a36
                 System.out.println("Mana: " + "9999/9999");
                 System.out.println("Backstory: " + "A hero for fun");
                 System.out.println("Skills:" + "\n - Punch: A powerful punch attack." + "\n - Serious Punch: A devastating punch attack." + "\n - Serious Series: A series of powerful attacks.");

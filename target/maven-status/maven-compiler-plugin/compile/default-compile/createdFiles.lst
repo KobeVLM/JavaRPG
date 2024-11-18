@@ -1,6 +1,8 @@
 com\game\characters\NPC.class
 com\game\worlds\FrostedPeaks.class
+com\game\utils\SkipButton.class
 com\game\inventory\Inventory.class
+com\game\utils\SkipButton$1.class
 com\game\worlds\EmberIsles.class
 com\game\skills\StunSkill.class
 com\game\skills\Skill.class
