@@ -50,10 +50,11 @@ public class Main {
                     Utility.displayClearDelay();
                     player.displayCharacterInfo();
 
-                    // Add items to player inventory
+                    // Add Starting items to player inventory
                     player.getInventory().addItem(new Armor("Steel Armor", "Provides excellent protection.", 10));
                     player.getInventory().addItem(new Weapon("Sword", "A sharp blade.", 15));
-                    player.getInventory().addItem(new Potion("Health Potion", "Restores 20 health.", 20, 3));
+                    player.getInventory().addItem(new Potion("Health Potion", "Restores 20 health.", 40, 99));
+                    player.getInventory().addItem(new Potion("Mana Potion", "Restores 20 mana.", 40, 99));
 
                     // Start the game
                     boolean gameWon = Game.prologue(player, scan);
@@ -131,7 +132,11 @@ public class Main {
 
         Player OP = new Player(
             "Saitama",
+<<<<<<< HEAD
             10000,
+=======
+            100000,
+>>>>>>> 284ca352bcbfc9e2902d921cd9105e32efa19a36
             1000,
             9999,
             9999,
@@ -207,8 +212,13 @@ public class Main {
                 break;
             case "4":
                 System.out.println("Hero Name: " + "Saitama");
+<<<<<<< HEAD
                 System.out.println("Health: " + "10000");
                 System.out.println("Attack Power: " + "1000");
+=======
+                System.out.println("Health: " + "100000");
+                System.out.println("Attack Power: " + "10");
+>>>>>>> 284ca352bcbfc9e2902d921cd9105e32efa19a36
                 System.out.println("Mana: " + "9999/9999");
                 System.out.println("Backstory: " + "A hero for fun");
                 System.out.println("Skills:" + "\n - Punch: A powerful punch attack." + "\n - Serious Punch: A devastating punch attack." + "\n - Serious Series: A series of powerful attacks.");

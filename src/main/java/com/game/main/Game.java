@@ -17,10 +17,15 @@ import java.net.URL;
 @SuppressWarnings("unused")
 public class Game {
     public static boolean prologue(Player player, Scanner scan) {
+<<<<<<< HEAD
 
         // (https://www.texttovoice.online/) Voices for:
         // Scene - Salli, Female
 
+=======
+        player.heal(100); // Example of healing the player after a battle
+        player.setMaxHealth(player.getHealth() + 100); // Example of increasing the player's max health
+>>>>>>> 284ca352bcbfc9e2902d921cd9105e32efa19a36
 
         Utility.displayClearDelay();
         Utility.displayAsciiArt(player.getName() +" Journey Begins ");
@@ -98,7 +103,6 @@ public class Game {
         Utility.displayAsciiArt("ACT Prologue - Completed");
         Utility.displayDelay(2);
 
-
         // Proceed to Act I
         return startActOne(player, scan);
     }
@@ -128,7 +132,7 @@ public class Game {
 
         Utility.displayDelay(2);
 
-        Utility.printWithDelay("\nAs Benimaru approaches, Zephy turns to face him, her eyes sharp but weary. She stands poised, ready for anything.");
+        Utility.printWithDelay("\nAs " + player.getName() + " approaches, Zephy turns to face him, her eyes sharp but weary. She stands poised, ready for anything.");
 
         Utility.displayClearDelay();
 
@@ -161,7 +165,11 @@ public class Game {
         Utility.printWithDelay("The two form an uneasy alliance, and as they venture deeper into the Frosted Peaks, they come face-to-face with Thalios the Frost Giant.");
         Utility.printSpace(3);
         Utility.displayDelay(2);
+<<<<<<< HEAD
         Enemy general1 = new Enemy("Thalios", 250, 70, 100, 100, Arrays.asList(), 
+=======
+        Enemy general1 = new Enemy("Thalios", 400, 40, 100, 100, Arrays.asList(), 
+>>>>>>> 284ca352bcbfc9e2902d921cd9105e32efa19a36
         "Thalios, a once-noble frost giant, was frozen for centuries until the Abyssal Lord revived him. Now, he wields the icy magic of the Frosted Peaks to destroy those who dare defy his master."
         );
         Utility.printWithDelay(general1.getName() + "\n\"Mortals. You seek to defy the Abyssal Lord? Foolish. The cold will claim you long before you reach him!\"");
@@ -243,6 +251,7 @@ public class Game {
     public static boolean startActThree(Player player, Scanner scan) {
         //Heal player after the battle
         player.heal(1000);
+        player.setMaxHealth(player.getHealth());
 
 
         // Clear screen and display the opening for Act III
