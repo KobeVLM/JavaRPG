@@ -21,7 +21,10 @@ import java.awt.event.ActionListener;
 public class Game {
     public static boolean prologue(Player player, Scanner scan) {
         SkipButton.resetSkip(); // Reset the skip flag
-        
+        SkipButton.createSkipButton(); // Create the skip button
+
+        player.heal(100); // Example of healing the player after a battle
+        player.setMaxHealth(player.getHealth() + 100); // Example of increasing the player's max health
 
         Utility.displayClearDelay();
         Utility.displayAsciiArt(player.getName() + " Journey Begins ");
@@ -41,7 +44,6 @@ public class Game {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        SkipButton.createSkipButton(); // Create the skip button
         Utility.displayClearDelay();
 
         Utility.printWithDelay(player.getName() + ": \n\"It's been too long. I've waited for this moment... to end the creature that took everything from me.\"");
@@ -56,10 +58,10 @@ public class Game {
 
         Enemy lavafiend = new Enemy(
             "Lava Fiend",
-            80,
-            10,
-            20,
-            20,
+            300, // Increased HP
+            30, // Increased Attack Power
+            50, // Increased Mana
+            50,
             Arrays.asList(),
             "Spawned from the Ember Isles' molten depths, the Lava Fiend is a fiery creature infused with dark magic. " +
             "Guarding hidden treasures, its cunning and agility make it a dangerous adversary despite its small size."
@@ -97,7 +99,6 @@ public class Game {
         Utility.displayAsciiArt("ACT Prologue - Completed");
         Utility.displayDelay(2);
 
-
         // Proceed to Act I
         return startActOne(player, scan);
     }
@@ -134,7 +135,13 @@ public class Game {
         Utility.printWithDelay("The two form an uneasy alliance, and as they venture deeper into the Frosted Peaks, they come face-to-face with Thalios the Frost Giant.");
         Utility.printSpace(3);
         Utility.displayDelay(2);
-        Enemy general1 = new Enemy("Thalios", 400, 40, 100, 100, Arrays.asList(),
+        Enemy general1 = new Enemy(
+            "Thalios", 
+            600,  // Increased HP
+            40, // Increased Attack Power
+            80, // Increased Mana
+            80,
+            Arrays.asList(),
             "Thalios, a once-noble frost giant, was frozen for centuries until the Abyssal Lord revived him. Now, he wields the icy magic of the Frosted Peaks to destroy those who dare defy his master."
         );
         Utility.printWithDelay(general1.getName() + "\n\"Mortals. You seek to defy the Abyssal Lord? Foolish. The cold will claim you long before you reach him!\"");
@@ -189,7 +196,13 @@ public class Game {
         Utility.printWithDelay("The three form an uneasy alliance, and as they venture deeper into the Abyssal Depths, they come face-to-face with the Abyssal Lord's minions.");
         Utility.printSpace(3);
         Utility.displayDelay(2);
-        Enemy general2 = new Enemy("Abyssal Minion", 500, 50, 150, 150, Arrays.asList(),
+        Enemy general2 = new Enemy(
+            "Abyssal Minion", 
+            700, // Increased HP
+            50, // Increased Attack Power
+            100, // Increased Mana
+            100,
+            Arrays.asList(),
             "The Abyssal Minion, a creature of pure darkness, serves the Abyssal Lord with unwavering loyalty. Its power is unmatched, and it will stop at nothing to destroy those who oppose its master."
         );
         Utility.printWithDelay(general2.getName() + "\n\"You dare challenge the Abyssal Lord? Prepare to be consumed by darkness!\"");
@@ -246,7 +259,8 @@ public class Game {
         Utility.printWithDelay("As they enter the throne room, they come face-to-face with the Abyssal Lord.");
         Utility.printSpace(3);
         Utility.displayDelay(2);
-        Enemy abyssalLord = new Enemy("Abyssal Lord", 1000, 100, 200, 200, Arrays.asList(),
+        Enemy abyssalLord = new Enemy(
+            "Abyssal Lord", 8000, 150, 500, 500, Arrays.asList(),
             "The Abyssal Lord, a being of pure darkness, has brought chaos and destruction to the world. Its power is unmatched, and it will stop at nothing to destroy those who oppose it."
         );
         Utility.printWithDelay(abyssalLord.getName() + "\n\"You dare challenge me? Prepare to be destroyed!\"");

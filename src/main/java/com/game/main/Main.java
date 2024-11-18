@@ -16,9 +16,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         
-        
         while (true) {
-
             Utility.displayDelay(3);
             Utility.clearScreen();
             DialogueScene.displayTitle();
@@ -89,8 +87,6 @@ public class Main {
     }
 
     public static Player chooseCharacter(Scanner scan) {
-
-
         // Define skills for Benimaru, Zephy, and Draven
         Skill enhance = new AttackPowerSkill("Fireball", "A powerful fire attack.", 15, 10);
         Skill heal = new HealSkill("Heal", "Restores a large amount of health.", 20, 30);
@@ -101,12 +97,11 @@ public class Main {
         Skill seriousPunch = new AttackPowerSkill("Serious Punch", "A devastating punch attack.", 0, 10);
         Skill seriousSeries = new AttackPowerSkill("Serious Series", "A series of powerful attacks.", 0, 20);
 
-
         // Define characters
         Player warrior = new Player(
             "Benimaru", 
-            200, 
-            300, 
+            500, // Increased HP
+            50, // Increased Attack Power
             100, 
             100, 
             Arrays.asList(shield, heal, enhance), 
@@ -114,19 +109,19 @@ public class Main {
         );
         Player mage = new Player(
             "Zephy", 
-            200, 
-            25, 
-            100, 
-            100, 
+            400, // Increased HP
+            60, // Increased Attack Power
+            150, // Increased Mana
+            150, 
             Arrays.asList(enhance, heal), 
             "A wise and powerful mage with high attack power and healing abilities."
         );
         Player rogue = new Player(
             "Draven", 
-            200, 
-            20, 
-            100, 
-            100, 
+            450, // Increased HP
+            55, // Increased Attack Power
+            120, // Increased Mana
+            120, 
             Arrays.asList(enhance, shield), 
             "A stealthy and cunning rogue with balanced attack and defense abilities."
         );
@@ -148,7 +143,7 @@ public class Main {
             System.out.println("2. Zephy");
             System.out.println("3. Draven");
             System.out.println("4. Saitama");
-            System.out.print("\nEnter the number of your choice: ");
+            System.out.print("\nEnter the Hero of your choice: ");
             try {
                 int choice = scan.nextInt();
                 scan.nextLine(); // Consume newline
@@ -185,32 +180,32 @@ public class Main {
             switch (input) {
             case "1":
                 System.out.println("Hero Name: " + "Benimaru");
-                System.out.println("Health: " + "200");
-                System.out.println("Attack Power: " + "20");
+                System.out.println("Health: " + "500");
+                System.out.println("Attack Power: " + "50");
                 System.out.println("Mana: " + "100/100");
                 System.out.println("Backstory: " + "A strong and brave warrior with high defense and healing abilities.");
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health." + "\n - Shield: Greatly increases defense.");
                 break;
             case "2":
                 System.out.println("Hero Name: " + "Zephy");
-                System.out.println("Health: " + "200");
-                System.out.println("Attack Power: " + "25");
-                System.out.println("Mana: " + "100/100");
+                System.out.println("Health: " + "400");
+                System.out.println("Attack Power: " + "60");
+                System.out.println("Mana: " + "150/150");
                 System.out.println("Backstory: " + "A wise and powerful mage with high attack power and healing abilities.");
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Heal: Restores a large amount of health.");
                 break;
             case "3":
                 System.out.println("Hero Name: " + "Draven");
-                System.out.println("Health: " + "200");
-                System.out.println("Attack Power: " + "20");
-                System.out.println("Mana: " + "100/100");
+                System.out.println("Health: " + "450");
+                System.out.println("Attack Power: " + "55");
+                System.out.println("Mana: " + "120/120");
                 System.out.println("Backstory: " + "A stealthy and cunning rogue with balanced attack and defense abilities.");
                 System.out.println("Skills:" + "\n - Enhanced: A powerful fire attack." + "\n - Shield: Greatly increases defense.");
                 break;
             case "4":
                 System.out.println("Hero Name: " + "Saitama");
                 System.out.println("Health: " + "100000");
-                System.out.println("Attack Power: " + "10");
+                System.out.println("Attack Power: " + "1000");
                 System.out.println("Mana: " + "9999/9999");
                 System.out.println("Backstory: " + "A hero for fun");
                 System.out.println("Skills:" + "\n - Punch: A powerful punch attack." + "\n - Serious Punch: A devastating punch attack." + "\n - Serious Series: A series of powerful attacks.");
