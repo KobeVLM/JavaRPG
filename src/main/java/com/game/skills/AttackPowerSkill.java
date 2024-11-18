@@ -1,7 +1,6 @@
 package com.game.skills;
 
-import com.game.characters.Player;
-import com.game.characters.Enemy;
+import com.game.characters.Character;
 import com.game.utils.Utility;
 
 public class AttackPowerSkill extends Skill {
@@ -26,13 +25,13 @@ public class AttackPowerSkill extends Skill {
     }
 
     @Override
-    public void applyEffect(Player player, Enemy enemy) {
-        if (player.getMana() >= getManaCost()) {
-            player.useMana(getManaCost());
-            player.increaseAttackPower(attackPowerIncrease);
-            Utility.printWithDelay("Your attack power increased by " + attackPowerIncrease + ".\n");
+    public void applyEffect(Character user, Character target) {
+        if (user.getMana() >= getManaCost()) {
+            user.useMana(getManaCost());
+            user.increaseAttackPower(attackPowerIncrease);
+            Utility.printWithDelay(user.getName() + "'s attack power increased by " + attackPowerIncrease + ".\n");
         } else {
-            System.out.println("Not enough mana to use this skill.");
+            Utility.printWithDelay("Not enough mana to use this skill.");
         }
     }
 

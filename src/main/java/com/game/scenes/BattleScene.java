@@ -2,6 +2,7 @@ package com.game.scenes;
 
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -308,8 +309,20 @@ public class BattleScene {
             Utility.printWithDelay("The enemy " + enemy.getName() + " is stunned and cannot move!");
             enemy.reduceStunDuration();
         } else {
-            int attackPower = enemy.attack(player);
-            Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+            Random random = new Random();
+            int action = random.nextInt(100); // Generate a random number between 0 and 99
+
+            if (action < 30) {
+                // 30% chance to use a damage skill
+                enemy.useDamageSkill(player);
+            } else if (action < 70) {
+                // 40% chance to use a healing skill
+                enemy.useHealSkill();
+            } else {
+                // 30% chance to attack normally
+                int attackPower = enemy.attack(player);
+                Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+            }
         }
     }
 

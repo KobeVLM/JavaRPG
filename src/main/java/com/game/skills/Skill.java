@@ -1,11 +1,7 @@
 package com.game.skills;
 
-import com.game.characters.Player;
-import com.game.characters.Enemy;
-import com.game.utils.*;
+import com.game.characters.Character;
 
-
-@SuppressWarnings("unused")
 public abstract class Skill {
     private String name;
     private String description;
@@ -45,7 +41,7 @@ public abstract class Skill {
         System.out.println("Using skill: " + name + " - " + description);
     }
 
-    public abstract void applyEffect(Player player, Enemy enemy);
+    public abstract void applyEffect(Character user, Character target);
 
     public abstract void enhanceSkill(int level);
 

@@ -100,6 +100,9 @@ public abstract class Character {
 
     public void heal(int amount) {
         this.health += amount;
+        if (this.health > this.maxHealth) {
+            this.health = this.maxHealth;
+        }
     }
 
     public void increaseDefense(int amount) {

@@ -4,15 +4,12 @@ import com.game.main.Main;
 import com.github.lalyos.jfiglet.FigletFont;
 
 import javax.sound.sampled.*;
-import javax.swing.JFrame;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 public class Utility {
     private static Clip clip;
-    private static boolean spacebarPressed = false;
 
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");

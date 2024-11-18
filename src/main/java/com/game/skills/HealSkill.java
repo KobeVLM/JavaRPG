@@ -1,8 +1,7 @@
 package com.game.skills;
 
-import com.game.characters.Player;
+import com.game.characters.Character;
 import com.game.utils.Utility;
-import com.game.characters.Enemy;
 
 public class HealSkill extends Skill {
     private int healAmount;
@@ -26,13 +25,13 @@ public class HealSkill extends Skill {
     }
 
     @Override
-    public void applyEffect(Player player, Enemy enemy) {
-        if (player.getMana() >= getManaCost()) {
-            player.useMana(getManaCost());
-            player.heal(healAmount);
-            Utility.printWithDelay("You healed for " + healAmount + " health.\n");
+    public void applyEffect(Character user, Character target) {
+        if (user.getMana() >= getManaCost()) {
+            user.useMana(getManaCost());
+            user.heal(healAmount);
+            Utility.printWithDelay(user.getName() + " healed for " + healAmount + " health.\n");
         } else {
-            System.out.println("Not enough mana to use this skill.");
+            Utility.printWithDelay("Not enough mana to use this skill.");
         }
     }
 

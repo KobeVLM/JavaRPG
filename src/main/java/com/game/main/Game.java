@@ -23,9 +23,6 @@ public class Game {
         SkipButton.resetSkip(); // Reset the skip flag
         SkipButton.createSkipButton(); // Create the skip button
 
-        player.heal(100); // Example of healing the player after a battle
-        player.setMaxHealth(player.getHealth() + 100); // Example of increasing the player's max health
-
         Utility.displayClearDelay();
         Utility.displayAsciiArt(player.getName() + " Journey Begins ");
         Utility.displayDelay(2);
@@ -62,7 +59,10 @@ public class Game {
             30, // Increased Attack Power
             50, // Increased Mana
             50,
-            Arrays.asList(),
+            Arrays.asList(
+                new DamageSkill("Fireball", "Launches a fireball at the enemy.", 10, 20),
+                new HealSkill("Ember Heal", "Heals the Lava Fiend.", 20, 30)
+            ),
             "Spawned from the Ember Isles' molten depths, the Lava Fiend is a fiery creature infused with dark magic. " +
             "Guarding hidden treasures, its cunning and agility make it a dangerous adversary despite its small size."
         );

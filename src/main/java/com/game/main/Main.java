@@ -88,15 +88,21 @@ public class Main {
 
     public static Player chooseCharacter(Scanner scan) {
         // Define skills for Benimaru, Zephy, and Draven
-        Skill enhance = new AttackPowerSkill("Fireball", "A powerful fire attack.", 15, 10);
-        Skill heal = new HealSkill("Heal", "Restores a large amount of health.", 20, 30);
-        Skill shield = new BuffSkill("Shield", "Greatly increases defense.", 12, 15);
-
+        Skill flameStrike = new DamageSkill("Flame Strike", "A powerful fire attack.", 10, 15);
+        Skill divineHealing = new HealSkill("Divine Healing", "Restores a large amount of health.", 20, 30);
+        Skill ironWall = new BuffSkill("Iron Wall", "Greatly increases defense.", 12, 15);
+    
+        Skill arcaneBlast = new DamageSkill("Arcane Blast", "A powerful magical attack.", 15, 10);
+        Skill mysticHeal = new HealSkill("Mystic Heal", "Restores a large amount of health.", 20, 30);
+    
+        Skill shadowStrike = new DamageSkill("Shadow Strike", "A powerful shadow attack.", 15, 10);
+        Skill evasion = new BuffSkill("Evasion", "Greatly increases defense.", 12, 15);
+    
         // Define skills for Saitama
-        Skill punch = new AttackPowerSkill("Punch", "A powerful punch attack.", 10, 10);
-        Skill seriousPunch = new AttackPowerSkill("Serious Punch", "A devastating punch attack.", 0, 10);
-        Skill seriousSeries = new AttackPowerSkill("Serious Series", "A series of powerful attacks.", 0, 20);
-
+        Skill normalPunch = new AttackPowerSkill("Normal Punch", "A powerful punch attack.", 10, 10);
+        Skill consecutiveNormalPunches = new AttackPowerSkill("Consecutive Normal Punches", "A devastating punch attack.", 0, 10);
+        Skill seriousPunch = new AttackPowerSkill("Serious Punch", "A series of powerful attacks.", 0, 20);
+    
         // Define characters
         Player warrior = new Player(
             "Benimaru", 
@@ -104,7 +110,7 @@ public class Main {
             50, // Increased Attack Power
             100, 
             100, 
-            Arrays.asList(shield, heal, enhance), 
+            Arrays.asList(ironWall, divineHealing, flameStrike), 
             "A strong and brave warrior with high defense and healing abilities."
         );
         Player mage = new Player(
@@ -113,7 +119,7 @@ public class Main {
             60, // Increased Attack Power
             150, // Increased Mana
             150, 
-            Arrays.asList(enhance, heal), 
+            Arrays.asList(arcaneBlast, mysticHeal), 
             "A wise and powerful mage with high attack power and healing abilities."
         );
         Player rogue = new Player(
@@ -122,20 +128,20 @@ public class Main {
             55, // Increased Attack Power
             120, // Increased Mana
             120, 
-            Arrays.asList(enhance, shield), 
+            Arrays.asList(shadowStrike, evasion), 
             "A stealthy and cunning rogue with balanced attack and defense abilities."
         );
-
+    
         Player OP = new Player(
             "Saitama",
-            100000,
+            9999,
             1000,
             9999,
             9999,
-            Arrays.asList(punch, seriousPunch, seriousSeries),
+            Arrays.asList(normalPunch, consecutiveNormalPunches, seriousPunch),
             "A hero for fun"
         );
-
+    
         // Character selection
         while (true) {
             System.out.println("Choose your character:");
@@ -143,11 +149,11 @@ public class Main {
             System.out.println("2. Zephy");
             System.out.println("3. Draven");
             System.out.println("4. Saitama");
-            System.out.print("\nEnter the Hero of your choice: ");
+            System.out.print("\nEnter the number of your choice: ");
             try {
                 int choice = scan.nextInt();
                 scan.nextLine(); // Consume newline
-
+    
                 switch (choice) {
                     case 1:
                         return warrior;

@@ -1,8 +1,7 @@
 package com.game.skills;
 
-import com.game.characters.Player;
+import com.game.characters.Character;
 import com.game.utils.Utility;
-import com.game.characters.Enemy;
 
 public class BuffSkill extends Skill {
     private int buffAmount;
@@ -26,13 +25,13 @@ public class BuffSkill extends Skill {
     }
 
     @Override
-    public void applyEffect(Player player, Enemy enemy) {
-        if (player.getMana() >= getManaCost()) {
-            player.useMana(getManaCost());
-            player.increaseDefense(buffAmount);
-            Utility.printWithDelay("Your defense increased by " + buffAmount + ".\n");
+    public void applyEffect(Character user, Character target) {
+        if (user.getMana() >= getManaCost()) {
+            user.useMana(getManaCost());
+            user.increaseDefense(buffAmount);
+            Utility.printWithDelay(user.getName() + "'s defense increased by " + buffAmount + ".\n");
         } else {
-            System.out.println("Not enough mana to use this skill.");
+            Utility.printWithDelay("Not enough mana to use this skill.");
         }
     }
 
