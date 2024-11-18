@@ -33,8 +33,4 @@ public class Player extends Character {
     public void increaseDefense(int amount) {
         // Implement defense logic
     }
-
-    public int getMaxHealth() {
-        return 100; // Example max health
-    }
 }

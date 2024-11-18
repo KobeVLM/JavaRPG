@@ -1,12 +1,10 @@
 com\game\characters\NPC.class
 com\game\worlds\FrostedPeaks.class
-com\game\characters\Boss.class
 com\game\inventory\Inventory.class
 com\game\worlds\EmberIsles.class
 com\game\skills\StunSkill.class
 com\game\skills\Skill.class
 com\game\main\Main.class
-com\game\characters\General.class
 com\game\items\Item.class
 com\game\scenes\DialogueScene.class
 com\game\characters\Enemy.class
@@ -18,7 +16,6 @@ com\game\items\Weapon.class
 com\game\worlds\World.class
 com\game\items\Potion.class
 com\game\skills\HealSkill.class
-com\game\characters\Minion.class
 com\game\main\Game.class
 com\game\characters\Character.class
 com\game\scenes\BattleScene.class

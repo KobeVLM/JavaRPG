@@ -1,5 +1,6 @@
 package com.game.utils;
 
+import com.game.main.Main;
 import com.github.lalyos.jfiglet.FigletFont;
 
 import javax.sound.sampled.*;
@@ -117,22 +118,47 @@ public class Utility {
     }
 
     public static void playSound(String soundFileName) {
-        new Thread(() -> {
-            try {
-                URL soundFile = Utility.class.getResource("/sounds/" + soundFileName);
-                if (soundFile == null) {
-                    System.err.println("Sound file not found: " + soundFileName);
-                    return;
-                }
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
-                clip = AudioSystem.getClip();
-                clip.open(audioStream);
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
-                clip.start();
-            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-                e.printStackTrace();
+        try {
+            URL soundFile = Main.class.getResource("/sounds/" + soundFileName);
+            if (soundFile == null) {
+                System.err.println("Sound file not found: " + soundFileName);
+                return;
             }
-        }).start();
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
+            AudioFormat format = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+
+            if (!AudioSystem.isLineSupported(info)) {
+                System.err.println("Audio format not supported: " + format);
+                return;
+            }
+
+            clip = (Clip) AudioSystem.getLine(info);
+            clip.open(audioStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void waitForSoundToComplete() {
+        if (clip != null) {
+            final Object lock = new Object();
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    synchronized (lock) {
+                        lock.notify();
+                    }
+                }
+            });
+            synchronized (lock) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public static void stopSound() {

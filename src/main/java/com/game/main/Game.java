@@ -9,11 +9,14 @@ import com.game.characters.Enemy;
 import com.game.skills.*;
 import java.util.Scanner;
 
+import javax.sound.sampled.*;
+import java.io.IOException;
+import java.net.URL;
+
 
 @SuppressWarnings("unused")
 public class Game {
     public static boolean prologue(Player player, Scanner scan) {
-        player.heal(100); // Example of healing the player after a battle
 
         // (https://www.texttovoice.online/) Voices for:
         // Scene - Salli, Female
@@ -26,12 +29,14 @@ public class Game {
         Utility.displayAsciiArt("Ember Isles");
         try {
             Thread.sleep(2000); // 2 seconds delay
+            Utility.playSound("Prologue.wav");
             Utility.printWithDelay(
                 "Scene: \n" + 
                 player.getName() + 
                 " stands alone at the edge of the Ember Isles, looking out over the lava flows with a hardened expression. \n " + 
                 "His thoughts are consumed with vengeance, the Abyssal Lord's creatures responsible for his family's death.\n "+ 
                 "The wind howls, carrying ash and embers as " + player.getName() + " begins his journey.");
+                Utility.waitForSoundToComplete();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -49,7 +54,7 @@ public class Game {
 
         Enemy lavafiend = new Enemy(
         "Lava Fiend", 
-        50, 
+        50,     
         10, 
         20, 
         20, 
@@ -107,11 +112,13 @@ public class Game {
         Utility.displayAsciiArt("Frosted Peaks");
         try {
             Thread.sleep(2000); // 2 seconds delay
+            Utility.playSound("Act1.wav");
             Utility.printWithDelay(
                 "Scene: \n" + 
                 player.getName() + 
                 " reaches the frozen landscape of the Frosted Peaks. The bitter cold contrasts with the fiery wrath that drives him forward. " + 
                 "As he makes his way through the snow, he notices a figure in the distance, an Elf moving gracefully across the ice.");
+                Utility.waitForSoundToComplete();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -154,7 +161,7 @@ public class Game {
         Utility.printWithDelay("The two form an uneasy alliance, and as they venture deeper into the Frosted Peaks, they come face-to-face with Thalios the Frost Giant.");
         Utility.printSpace(3);
         Utility.displayDelay(2);
-        Enemy general1 = new Enemy("Thalios", 400, 70, 100, 100, Arrays.asList(), 
+        Enemy general1 = new Enemy("Thalios", 250, 70, 100, 100, Arrays.asList(), 
         "Thalios, a once-noble frost giant, was frozen for centuries until the Abyssal Lord revived him. Now, he wields the icy magic of the Frosted Peaks to destroy those who dare defy his master."
         );
         Utility.printWithDelay(general1.getName() + "\n\"Mortals. You seek to defy the Abyssal Lord? Foolish. The cold will claim you long before you reach him!\"");
@@ -185,6 +192,7 @@ public class Game {
         Utility.displayAsciiArt("Abyssal Depths");
         try {
             Thread.sleep(2000); // 2 seconds delay
+            Utility.playSound("Act2.wav");
             Utility.printWithDelay(
                 "Scene: \n" + 
                 "After defeating Thalios, " + player.getName() + " and Zephy travel to the Abyssal Depths, a dark, twisted realm corrupted by the Abyssal Lord's magic. " + 
@@ -218,7 +226,7 @@ public class Game {
             Utility.displayClearDelay();
         }
         // Example of a battle in Act II
-        Enemy seaCreature = new Enemy("Sea Creatures", 200, 40, 80, 80, Arrays.asList(), "A colossal giant.");
+        Enemy seaCreature = new Enemy("Sea Creatures", 250, 40, 80, 80, Arrays.asList(), "A colossal giant.");
         if (!BattleScene.startBattle(player, seaCreature, scan)) {
             return false;
         }
@@ -247,12 +255,14 @@ public class Game {
         // Scene setup
         try {
             Thread.sleep(2000); // 2 seconds delay
+            Utility.playSound("Act3.wav");
             Utility.printWithDelay(
                 "Scene: \n" + 
                 player.getName() + ", Zephy, and Draven find themselves overwhelmed by the Abyssal Lord's power. " +
                 "Realizing they're not strong enough to defeat him alone, they decide to return to the Frosted Peaks to seek help. " + 
                 "In the sacred Silver Citadel, they find Seraphina, a paladin chosen by the Radiant Goddess to defend the realm."
             );
+            Utility.waitForSoundToComplete();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -298,11 +308,13 @@ public class Game {
         // Scene setup and Abyssal Lord dialogue
         try {
             Thread.sleep(2000); // 2 seconds delay
+            Utility.playSound("FinalAct.wav");
             Utility.printWithDelay(
                 "Scene: \n" + 
                 "The group confronts the Abyssal Lord in his lair, deep within the Abyssal Depths. " +
                 "The Abyssal Lord's form is massive, surrounded by swirling dark waters, and his voice echoes with malevolent power."
             );
+            Utility.waitForSoundToComplete();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -322,7 +334,7 @@ public class Game {
         Utility.printWithDelay("The final battle begins. The Abyssal Lord unleashes his powerful abilities, and the heroes must work together to bring him down.");
         Utility.displayDelay(1);
         // Start the final battle 
-        Enemy abyssalLord = new Enemy("Abyssal Lord", 1000, 80, 150, 150, Arrays.asList(), "The dark ruler of the Abyssal Depths.");
+        Enemy abyssalLord = new Enemy("Abyssal Lord", 300, 80, 150, 150, Arrays.asList(), "The dark ruler of the Abyssal Depths.");
         if (!BattleScene.startBattle(player, abyssalLord, scan)) {
             return false; // Player lost the battle
         }

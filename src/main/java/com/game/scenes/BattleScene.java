@@ -18,6 +18,10 @@ public class BattleScene {
 
     public static boolean startBattle(Player player, Enemy enemy, Scanner scan) {
         Utility.clearScreen();
+        int initialMaxHealth = player.getMaxHealth(); // Store the initial max health
+        int initialMaxMana = player.getMaxMana(); // Store the initial max mana
+    
+        // Display enemy information
         if (enemy.getName().equalsIgnoreCase("goblin")) {
             System.out.println("A wild Goblin appears!");
             Utility.printSpace(3);
@@ -59,21 +63,21 @@ public class BattleScene {
             Utility.displayDelay(2);
             Utility.clearScreen();
         }
-
+    
         Utility.displayDelay(2);
-        
-        System.out.println(player.getName() + " \t\t\t\t\t\t\t" + enemy.getName());
-        System.out.print("Health:\t" + getHealthBar(player.getHealth(), player.getMaxHealth()) + "\t [" + player.getHealth() + "/" + player.getMaxHealth() + "]");
+    
+        System.out.println(player.getName() + " \t\t\t\t\t\t" + enemy.getName());
+        System.out.print("Health:\t" + getHealthBar(player.getHealth(), initialMaxHealth) + "\t [" + player.getHealth() + "/" + initialMaxHealth + "]");
         System.out.print("\t\tHealth:\t" + getHealthBar(enemy.getHealth(), enemy.getMaxHealth()) + "\t [" + enemy.getHealth() + "/" + enemy.getMaxHealth() + "]");
-        System.out.print("\nMana:\t" + getManaBar(player.getMana(), player.getMaxMana()) + "\t [" + player.getMana() + "/" + player.getMaxMana() + "]");
+        System.out.print("\nMana:\t" + getManaBar(player.getMana(), initialMaxMana) + "\t [" + player.getMana() + "/" + initialMaxMana + "]");
         System.out.print("\t\tMana:\t" + getManaBar(enemy.getMana(), enemy.getMaxMana()) + "\t [" + enemy.getMana() + "/" + enemy.getMaxMana() + "]");
-
+    
         while (player.getHealth() > 0 && enemy.getHealth() > 0) {
             System.out.println();
             playerTurn(player, enemy, scan);
             if (enemy.getHealth() > 0) {
                 try {
-                    displayHealth(player, enemy);
+                    displayHealth(player, enemy, initialMaxHealth, initialMaxMana);
                     Utility.printSpace(1);
                     Utility.barrier();
                     Utility.printSpace(1);
@@ -86,15 +90,15 @@ public class BattleScene {
                 Utility.clearScreen();
                 enemyTurn(player, enemy);
             }
-            displayHealth(player, enemy);
+            displayHealth(player, enemy, initialMaxHealth, initialMaxMana);
         }
-        
+    
         if (player.getHealth() > 0) {
-            Utility.printWithDelay("\u001B[92m\n\nYou defeated the " + enemy.getName() + "!\u001B[0m");
+            Utility.printWithDelay("\u001B[92m\n\nYou defeated the enemy " + enemy.getName() + "!\u001B[0m");
             Utility.displayDelay(2);
             return true;
         } else {
-            Utility.printWithDelay("\u001B[91m\n\nYou were defeated by the " + enemy.getName() + "...\u001B[0m");
+            Utility.printWithDelay("\u001B[91m\n\nYou were defeated by the enemy " + enemy.getName() + "...\u001B[0m");
             Utility.displayDelay(2);
             return false;
         }
@@ -301,24 +305,24 @@ public class BattleScene {
 
     private static void enemyTurn(Player player, Enemy enemy) {
         if (enemy.isStunned()) {
-            Utility.printWithDelay("The " + enemy.getName() + " is stunned and cannot move!");
+            Utility.printWithDelay("The enemy " + enemy.getName() + " is stunned and cannot move!");
             enemy.reduceStunDuration();
         } else {
             int attackPower = enemy.attack(player);
-            Utility.printWithDelay("The " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+            Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
         }
     }
 
-    private static void displayHealth(Player player, Enemy enemy) {
+    private static void displayHealth(Player player, Enemy enemy, int initialMaxHealth, int initialMaxMana) {
         String currentHealth = "Player Health: " + player.getHealth();
         Utility.printSpace(2);
         Utility.barrier();
         Utility.printSpace(1);
         Utility.displayBoxedMessage(currentHealth);
         System.out.println(player.getName() + " \t\t\t\t\t\t\t" + enemy.getName());
-        System.out.print("Health:\t" + getHealthBar(player.getHealth(), player.getMaxHealth()) + "\t [" + player.getHealth() + "/" + player.getMaxHealth() + "]");
+        System.out.print("Health:\t" + getHealthBar(player.getHealth(), initialMaxHealth) + "\t [" + player.getHealth() + "/" + initialMaxHealth + "]");
         System.out.print("\t\tHealth:\t" + getHealthBar(enemy.getHealth(), enemy.getMaxHealth()) + "\t [" + enemy.getHealth() + "/" + enemy.getMaxHealth() + "]");
-        System.out.print("\nMana:\t" + getManaBar(player.getMana(), player.getMaxMana()) + "\t [" + player.getMana() + "/" + player.getMaxMana() + "]");
+        System.out.print("\nMana:\t" + getManaBar(player.getMana(), initialMaxMana) + "\t [" + player.getMana() + "/" + initialMaxMana + "]");
         System.out.print("\t\t Mana:\t" + getManaBar(enemy.getMana(), enemy.getMaxMana()) + "\t [" + enemy.getMana() + "/" + enemy.getMaxMana() + "]");
         System.out.println();
     }

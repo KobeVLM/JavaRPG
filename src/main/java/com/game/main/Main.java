@@ -15,14 +15,14 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-
+        
         while (true) {
 
             Utility.displayDelay(7);
             Utility.clearScreen();
             DialogueScene.displayTitle();
             try {
-                Thread.sleep(2000); // 2 seconds delay
+                Thread.sleep(3000); // 2 seconds delay
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -131,10 +131,10 @@ public class Main {
 
         Player OP = new Player(
             "Saitama",
-            100000,
-            10,
-            9999999,
-            99999999,
+            10000,
+            1000,
+            9999,
+            9999,
             Arrays.asList(punch, seriousPunch, seriousSeries),
             "A hero for fun"
         );
@@ -207,9 +207,9 @@ public class Main {
                 break;
             case "4":
                 System.out.println("Hero Name: " + "Saitama");
-                System.out.println("Health: " + "100000");
-                System.out.println("Attack Power: " + "10");
-                System.out.println("Mana: " + "9999999/99999999");
+                System.out.println("Health: " + "10000");
+                System.out.println("Attack Power: " + "1000");
+                System.out.println("Mana: " + "9999/9999");
                 System.out.println("Backstory: " + "A hero for fun");
                 System.out.println("Skills:" + "\n - Punch: A powerful punch attack." + "\n - Serious Punch: A devastating punch attack." + "\n - Serious Series: A series of powerful attacks.");
                 break;
