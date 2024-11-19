@@ -29,9 +29,9 @@ public class DamageSkill extends Skill {
         if (user.getMana() >= getManaCost()) {
             user.useMana(getManaCost());
             target.takeDamage(damageAmount);
-            Utility.printWithDelay(user.getName() + " dealt " + damageAmount + " damage to " + target.getName() + ".\n");
+            Utility.printWithDelay(user.getName() + " used " + getName() + " and dealt " + damageAmount + " damage to " + target.getName() + ".\n");
         } else {
-            Utility.printWithDelay("Not enough mana to use this skill.");
+            Utility.printWithDelay(user.getName() + " tried to use a skill without any mana remaining.");
         }
     }
 

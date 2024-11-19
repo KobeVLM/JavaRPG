@@ -162,10 +162,15 @@ public class Utility {
                 }
             });
             synchronized (lock) {
-                try {
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                while (clip.isRunning() && !SkipButton.isSkip()) {
+                    try {
+                        lock.wait(100); // Check every 100ms if the skip button is pressed
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (SkipButton.isSkip()) {
+                    clip.stop();
                 }
             }
         }

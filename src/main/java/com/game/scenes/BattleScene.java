@@ -106,40 +106,49 @@ public class BattleScene {
     }
 
     private static void playerTurn(Player player, Enemy enemy, Scanner scan) {
-        Utility.printSpace(1);
-        Utility.barrier();
-        Utility.printSpace(1);
-        Utility.displayDelay(1);
-        Utility.displayBoxedMessage(player.getName() + "'s Turn");
-        System.out.println();
-        System.out.println("[1] Attack");
-        System.out.println("[2] Use Skill");
-        System.out.println("[3] Open Inventory");
-        System.out.print("\nChoose an action: ");
-        try {
-            int choice = scan.nextInt();
-            scan.nextLine(); // Consume newline
-            Utility.clearScreen();
+        boolean turnOver = false;
+        while (!turnOver) {
 
-            switch (choice) {
-                case 1:
-                    int attackPower = player.attack(enemy);
-                    Utility.printWithDelay("You attacked " + enemy.getName() + " for " + attackPower + " damage.\n");
-                    break;
-                case 2:
-                    useSkill(player, enemy, scan);
-                    break;
-                case 3:
-                    openInventory(player, scan);
-                    break;
-                default:
-                    Utility.printWithDelay("Invalid choice. You missed your turn.");
-                    break;
+            Utility.printSpace(1);
+            Utility.barrier();
+            Utility.printSpace(1);
+            Utility.displayDelay(1);
+            Utility.displayBoxedMessage(player.getName() + "'s Turn");
+            System.out.println();
+            System.out.println("[1] Attack");
+            System.out.println("[2] Use Skill");
+            System.out.println("[3] Open Inventory");
+            System.out.print("\nChoose an action: ");
+            try {
+                int choice = scan.nextInt();
+                scan.nextLine(); // Consume newline
+                Utility.clearScreen();
+    
+                switch (choice) {
+                    case 1:
+                        int attackPower = player.attack(enemy);
+                        Utility.printWithDelay("You attacked " + enemy.getName() + " for " + attackPower + " damage.\n");
+                        turnOver = true;
+                        break;
+                    case 2:
+                        useSkill(player, enemy, scan);
+                        turnOver = true;
+                        break;
+                    case 3:
+                        displayHealth(player, enemy, player.getMaxHealth(), player.getMaxMana());
+                        openInventory(player, scan);
+                        break;
+                    default:
+                        Utility.printWithDelay("Invalid choice. You missed your turn.");
+                        turnOver = true;
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                Utility.clearScreen();
+                Utility.printWithDelay("Invalid input. You missed your turn.");
+                scan.nextLine(); // Consume the invalid input
+                turnOver = true;
             }
-        } catch (InputMismatchException e) {
-            Utility.clearScreen();
-            Utility.printWithDelay("Invalid input. You missed your turn.");
-            scan.nextLine(); // Consume the invalid input
         }
     }
 
@@ -168,37 +177,46 @@ public class BattleScene {
     }
 
     private static void openInventory(Player player, Scanner scan) {
-        System.out.println("Choose an item type:\n");
-        System.out.println("[1] Armor");
-        System.out.println("[2] Weapon");
-        System.out.println("[3] Potion");
-        System.out.print("\nEnter choice: ");
-        try {
-            int choice = scan.nextInt();
-            scan.nextLine(); // Consume newline
-            Utility.clearScreen();
+        boolean done = false;
 
-            switch (choice) {
-                case 1:
-                    manageArmor(player, scan);
-                    break;
-                case 2:
-                    manageWeapon(player, scan);
-                    break;
-                case 3:
-                    managePotion(player, scan);
-                    break;
-                default:
-                    Utility.clearScreen();
-                    Utility.printWithDelay("Invalid choice. You missed your turn.");
-                    Utility.displayDelay(2);
-                    break;
+        Utility.printSpace(2);
+        Utility.barrier();
+        while (!done) {
+            System.out.println("\nChoose an item type:\n");
+            System.out.println("[1] Armor");
+            System.out.println("[2] Weapon");
+            System.out.println("[3] Potion");
+            System.out.println("[4] Back to main menu");
+            System.out.print("\nEnter choice: ");
+            try {
+                int choice = scan.nextInt();
+                scan.nextLine(); // Consume newline
+                Utility.clearScreen();
+    
+                switch (choice) {
+                    case 1:
+                        manageArmor(player, scan);
+                        break;
+                    case 2:
+                        manageWeapon(player, scan);
+                        break;
+                    case 3:
+                        managePotion(player, scan);
+                        break;
+                    case 4:
+                        done = true;
+                        break;
+                    default:
+                        Utility.printWithDelay("Invalid choice. Please try again.");
+                        Utility.displayDelay(2);
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                Utility.clearScreen();
+                Utility.printWithDelay("Invalid input. Please try again.");
+                Utility.displayDelay(2);
+                scan.nextLine(); // Consume the invalid input
             }
-        } catch (InputMismatchException e) {
-            Utility.clearScreen();
-            Utility.printWithDelay("Invalid input. You missed your turn.");
-            Utility.displayDelay(2);
-            scan.nextLine(); // Consume the invalid input
         }
     }
 
@@ -218,7 +236,7 @@ public class BattleScene {
             System.out.println("[" + (i + 1) + "] " + armor.getName() + " - " + armor.getDescription());
         }
 
-        System.out.print("\nEnter the number of the armor to equip/unequip: ");
+        System.out.print("\nEnter the number of the Armor to equip/unequip: ");
         try {
             int choice = scan.nextInt();
             scan.nextLine(); // Consume newline
@@ -311,17 +329,35 @@ public class BattleScene {
         } else {
             Random random = new Random();
             int action = random.nextInt(100); // Generate a random number between 0 and 99
-
-            if (action < 30) {
-                // 30% chance to use a damage skill
-                enemy.useDamageSkill(player);
-            } else if (action < 70) {
-                // 40% chance to use a healing skill
-                enemy.useHealSkill();
+            int healthPercentage = (int) ((enemy.getHealth() / (double) enemy.getMaxHealth()) * 100);
+    
+            if (healthPercentage < 30) {
+                // If enemy's health is below 30%, 40% chance to use a healing skill
+                if (action < 40) {
+                    enemy.useHealSkill();
+                } else {
+                    // 60% chance to attack normally
+                    int attackPower = enemy.attack(player);
+                    Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+                }
+            } else if (healthPercentage < 70) {
+                // If enemy's health is below 70%, 30% chance to use a damage skill
+                if (action < 30) {
+                    enemy.useDamageSkill(player);
+                } else {
+                    // 70% chance to attack normally
+                    int attackPower = enemy.attack(player);
+                    Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+                }
             } else {
-                // 30% chance to attack normally
-                int attackPower = enemy.attack(player);
-                Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+                // If enemy's health is above 70%, 30% chance to use a damage skill
+                if (action < 30) {
+                    enemy.useDamageSkill(player);
+                } else {
+                    // 70% chance to attack normally
+                    int attackPower = enemy.attack(player);
+                    Utility.printWithDelay("The enemy " + enemy.getName() + " attacked you for " + attackPower + " damage.\n");
+                }
             }
         }
     }
@@ -332,7 +368,7 @@ public class BattleScene {
         Utility.barrier();
         Utility.printSpace(1);
         Utility.displayBoxedMessage(currentHealth);
-        System.out.println(player.getName() + " \t\t\t\t\t\t\t" + enemy.getName());
+        System.out.println(player.getName() + " \t\t\t\t\t\t" + enemy.getName());
         System.out.print("Health:\t" + getHealthBar(player.getHealth(), initialMaxHealth) + "\t [" + player.getHealth() + "/" + initialMaxHealth + "]");
         System.out.print("\t\tHealth:\t" + getHealthBar(enemy.getHealth(), enemy.getMaxHealth()) + "\t [" + enemy.getHealth() + "/" + enemy.getMaxHealth() + "]");
         System.out.print("\nMana:\t" + getManaBar(player.getMana(), initialMaxMana) + "\t [" + player.getMana() + "/" + initialMaxMana + "]");

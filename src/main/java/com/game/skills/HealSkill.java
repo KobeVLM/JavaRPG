@@ -31,7 +31,8 @@ public class HealSkill extends Skill {
             user.heal(healAmount);
             Utility.printWithDelay(user.getName() + " healed for " + healAmount + " health.\n");
         } else {
-            Utility.printWithDelay("Not enough mana to use this skill.");
+            Utility.printWithDelay(user.getName() + " tried to use a skill without any mana remaining.");
+            // “Abyssal Lord tried to use a skill without any mana remaining.”
         }
     }
 

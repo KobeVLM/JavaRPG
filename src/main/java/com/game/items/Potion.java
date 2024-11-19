@@ -6,13 +6,17 @@ public class Potion implements Item {
     private String name;
     private String description;
     private int healAmount;
+    private int manaAmount; // New attribute for mana amount
     private int quantity;
+    private boolean isManaPotion; // New attribute to specify if it's a mana potion
 
-    public Potion(String name, String description, int healAmount, int quantity) {
+    public Potion(String name, String description, int healAmount, int manaAmount, int quantity, boolean isManaPotion) {
         this.name = name;
         this.description = description;
         this.healAmount = healAmount;
+        this.manaAmount = manaAmount; // Initialize mana amount
         this.quantity = quantity;
+        this.isManaPotion = isManaPotion; // Initialize potion type
     }
 
     @Override
@@ -38,9 +42,14 @@ public class Potion implements Item {
     @Override
     public void use(Character character) {
         if (quantity > 0) {
-            character.heal(healAmount);
+            if (isManaPotion) {
+                character.useMana(manaAmount);
+                System.out.println(character.getName() + " used " + name + " and restored " + manaAmount + " mana. Remaining: " + quantity);
+            } else {
+                character.heal(healAmount);
+                System.out.println(character.getName() + " used " + name + " and healed for " + healAmount + " health. Remaining: " + quantity);
+            }
             quantity--;
-            System.out.println(character.getName() + " used " + name + " and healed for " + healAmount + " health. Remaining: " + quantity);
         } else {
             System.out.println("No " + name + " left to use.");
         }
